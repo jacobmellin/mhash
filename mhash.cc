@@ -55,7 +55,7 @@ char * hash(hashid hashType, unsigned char * data, unsigned long len)
 	if((hash_data=(unsigned char *)mhash_end(td)))
 	{
 		block_size = mhash_get_block_size(hashType);
-		if(hashType==MHASH_ADLER32)	// Fixes #6
+		if(hashType==MHASH_ADLER32 || hashType==MHASH_CRC32B) // Fixes #6
 			reverse_bytes(hash_data, block_size);
 		converted = convert_to_hex(hash_data, block_size);
 		mhash_free(hash_data);
